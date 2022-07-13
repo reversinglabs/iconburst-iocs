@@ -5,7 +5,7 @@ This repository contains IOCs relating to the IconBurst NPM software supply chai
 ## Contents
 
 - domains.txt - a list of domain names associated with IconBurst
-- filehashes.txt - a list of SHA1 file hashes associated with IconBurst
+- filehashes.csv - a CSV file containing the affected package names, versions, and MD5/SHA1/SHA256 hashes 
 
 ## References
 [ReversingLabs: IconBurst NPM software supply chain attack grabs data from apps and websites](https://blog.reversinglabs.com/blog/iconburst-npm-software-supply-chain-attack-grabs-data-from-apps-websites)
