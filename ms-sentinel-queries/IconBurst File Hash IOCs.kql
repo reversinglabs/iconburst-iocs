@@ -1,0 +1,9 @@
+let iconburstHashes = externaldata(filename: string, version: string, sha1: string, sha256: string, md5: string) [@"https://raw.githubusercontent.com/reversinglabs/iconburst-iocs/master/filehashes.csv"] with(ignoreFirstRecord=true, format="csv");
+(union isfuzzy=true
+(CommonSecurityLog
+| where isnotempty(FileHash)
+| join kind=inner iconburstHashes on $left.FileHash == $right.sha256),
+(DeviceFileEvents
+| where isnotempty(SHA256)
+| join kind=inner iconburstHashes on $left.SHA256 == $right.sha256
+))
