@@ -2,8 +2,9 @@ let iconburstHashes = externaldata(filename: string, version: string, sha1: stri
 (union isfuzzy=true
 (CommonSecurityLog
 | where isnotempty(FileHash)
-| join kind=inner iconburstHashes on $left.FileHash == $right.sha256),
+| join kind=inner iconburstHashes on $left.FileHash == $right.sha256
+| extend timestamp = TimeGenerated, HostCustomEntity = SourceHostName),
 (DeviceFileEvents
 | where isnotempty(SHA256)
 | join kind=inner iconburstHashes on $left.SHA256 == $right.sha256
-))
+| extend timestamp = TimeGenerated, HostCustomEntity = DeviceName))
